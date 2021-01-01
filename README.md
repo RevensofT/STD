@@ -1,12 +1,12 @@
 # Simplify Type Deprive
-Simple library to help you access to your object data in memory with less restain from C# or VB language limited.
+Simple library to help you access to data in memory with less restain from C# or VB language limited.
 
 ## What's in V 1.0 ?
 - 3 extension method
 - ref(of T) as pointer
 
 # ref(Of T) type
-Brand new type for rule breaker pointer, you can use it as memory seek if you want to do.
+A new type for unsafe pointer, it's value of reference type aka it's value type but invoke by method as reference type.
 
 ## Property
 ### value As T
@@ -67,16 +67,16 @@ B.value = 0
 ```
 
 # Extension method
-## ref(Of T)(ByRef Input As T) As ref(Of T)
+### ref(Of T)(ByRef Input As T) As ref(Of T)
 Create pointer from target, field of class and element of array are most safe pointer you can create without any concern, pointer of local var and value type should be use within their life cycle.
 ```vb
 Dim Base = {1, 2, 3, 4, 5}
 Dim A = Base(0).ref
 ```
-## ref(Of T, V)(ByRef Input As T) As ref(Of V)
+### ref(Of T, V)(ByRef Input As T) As ref(Of V)
 Same as previous but you can change its type to other on create.
 
-## mirror(Of T As Class)(Input As T) As T
+### mirror(Of T As Class)(Input As T) As T
 It's `MemberwiseClone` for duplicate a reference type object.
 ```vb
 Dim Base = {1, 2, 3, 4, 5}
@@ -86,8 +86,8 @@ A(0) = 56
 'Base(0) still be 1
 ```
 
-## as method
-Code breaker for cast type on .net, you can cast object to any type, doesn't matter if it ref type or val type, highly cause an error if you don't know what are you doing.
+### as(Of T, V)(Input As T) As V
+Unsafe cast type on .net, you can cast object to any type, doesn't matter if it ref type or val type, highly cause an error if you don't know what are you doing.
 ```vb
 Dim Base = {1, 2, 3, 4, 5}
 Dim A = Base.as(Of ref(Of Intptr))
@@ -95,3 +95,19 @@ Dim A = Base.as(Of ref(Of Intptr))
 'A(1).change(UInt64) is 5, aka Base.Length
 'A(2).change(Int32) is Base(0).ref
 ```
+
+# FAQ
+### Becareful when refer from local var.
+Any local var always end life cycle with method, when extied method, any pointer refer to those local var will be volatile.
+```vb
+Dim Base = {1, 2, 3, 4, 5}
+Dim A = Base.ref
+Dim B = Base(0).ref
+
+Return A
+'A is refer to Base not Int32() so when exited current method, this refer going to be volatile soon.
+'However if return B instead, it won't be volatile because it refer to a part of Int32().
+```
+
+### You need to know very well about data structure you cast with 'as' method.
+Mismatch data on cast type won't be report as an error on worst case when you use 'as' method, you will get corrupt data instead; cast on interface type can be done but require an implement method match to original data you refer to, invoke any method hasn't implement will cause an error.
