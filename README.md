@@ -15,7 +15,7 @@ Get and set value via pointer.
 A.value = 8
 ```
 
-### Default Readonly Index(Offset As Int64) As ref(Of T)
+### Default Readonly index(Offset As Int64) As ref(Of T)
 Move current pointer to other index offset of `T` unit.
 ```vb
 Dim Base = {1, 2, 3, 4, 5}
