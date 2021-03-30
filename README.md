@@ -1,6 +1,25 @@
 # Simplify Type Deprive
 Simple library to help you access to data in memory with less restain from C# or VB language limited.
 
+## What's in V 2.0 ?
+- 4 new extension method
+- 2 forging meta data
+- 3 raw structure data
+- 1 value type array
+
+# Custom.local(Of Contain As Structure, T)
+A new type for make ref sturct on local variant access as an array.
+
+## How to work with it ?
+First thing is it need a structure for contain data because it doesn't alloc in heap memory and C# `stackalloc` isn't easily recreate so it need define structure for container but don't worrry it very easy to define container size, only limit is it only define in byte size.
+
+```vb
+'Imports sri = System.Runtime.InteropServices
+<sri.StructLayout(sri.LayoutKind.Explicit, Size:=64)>
+Public Structure container_structure
+End Structure
+```
+
 ## What's in V 1.0 ?
 - 3 extension method
 - ref(of T) as pointer
