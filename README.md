@@ -7,6 +7,10 @@ Simple library to help you access to data in memory with less restain from C# or
 - 3 raw structure data
 - 1 value type array
 
+## What's in V 1.0 ?
+- 3 extension method
+- ref(of T) as pointer
+
 # Custom.local(Of Contain As Structure, T)
 A new type for make ref sturct on local variant access as an array.
 
@@ -19,10 +23,6 @@ First thing is it need a structure for contain data because it doesn't alloc in 
 Public Structure container_structure
 End Structure
 ```
-
-## What's in V 1.0 ?
-- 3 extension method
-- ref(of T) as pointer
 
 # ref(Of T) type
 A new type for unsafe pointer, it's value of reference type aka it's value type but invoke by method as reference type.
