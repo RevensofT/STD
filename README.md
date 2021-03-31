@@ -24,6 +24,33 @@ Public Structure container_structure
 End Structure
 ```
 
+### Declare
+```vb
+Dim Store As container_structure
+Dim Storing = Store.alloc(Of Integer)
+
+'If you no need to return data to other method you can declare like this.
+Dim Tmp_store = (New container_structure).alloc(Of Integer)
+```
+
+### Remark
+> Even it's class but its body on stack frame of method not heap so you better not return this class to other method because when the method you declare its container end, its data also loss along with it, if you want to return then return its container instead.
+
+## Property
+
+### Default item(Index As ULong) As T
+### length As ULong
+### container As Contain
+
+```vb
+With (New container_structure).alloc(Of Integer)
+  For I = 0 To .length - 1
+    .item(I) = I + 1
+  Next
+  Return .container
+End With
+```
+
 # ref(Of T) type
 A new type for unsafe pointer, it's value of reference type aka it's value type but invoke by method as reference type.
 
