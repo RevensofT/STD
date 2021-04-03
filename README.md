@@ -2,10 +2,10 @@
 Simple library to help you access to data in memory with less restain from C# or VB language limited.
 
 ## What's in V 2.0 ?
-- 4 new extension method
+- 11 new extension method
 - 2 forging meta data
 - 3 raw structure data
-- 1 value type array
+- Custom.local(Of Contain As Structure, T) as value type array
 
 ## What's in V 1.0 ?
 - 3 extension method
@@ -50,6 +50,45 @@ With (New container_structure).alloc(Of Integer)
   Return .container
 End With
 ```
+
+# Forge
+This namespace focus on accessing to metadata of reference type, most likely you don't need to use it directly but I make it all public if you understand how to manage metadata directly.
+
+- array(Of T)
+  - meta As native uint
+- class(Of T As (Class, New))
+  - meta As native uint
+
+# Raw
+This namespace focus on assist you to create data on stack instead on heap for reference type.
+> You can't directly create any structure in Raw namespace, I keep metadata out for safty sake but you can cast it out if you understand how to manage metadata.
+
+- array(Of Container As Structure, Element)
+  - [Hidden] meta As native uint
+  - [Hidden] size As native uint
+  - data As Container
+  - implement() As Element()
+    > Access this data as an array, don't return this array out of declare method because its data still be this structure so return this structure instead.
+  - change(Of V)() As Raw.array(Of Container, V)
+    > For change percepect type element, this method will generate new one with auto adjuct the array's size.
+  - class(Of V As {Class, New})() As Raw.class(Of Container, V)
+    > Generate new structure of Raw.class with current Container.
+- class(Of Container As Structure, T As {Class, New})
+  - [Hidden] meta As native uint
+  - data As Container
+  - implement() As T
+    > Access this data as T, don't return it out of declare method because its data still be this structure so return this structure instead.
+  - change(Of V As {Class, New})() As Raw.class(Of Container, V)
+    > For change percepect from T to V, it very risky to do, if you mismatch its contain data, it garantee to cauase an error.
+  - array(Of V)() As Raw.array(Of Container, V)
+    > Generate new structure of Raw.array with current Container, auto adjuct its size.
+- boxed(Of T As Structure)
+  > This structure is raw data of boxing value type but on stack instead on heap for use with an interface as ref struct.
+  - [Hidden] meta As native uint
+  - [Hidden] data As Container
+  - implement(Of Interface As Class)() As Interface
+    > Safe cast this data as ref struct and pass as interface that implement with T; same as other structure in Raw namespace, returen this structure instead an interface from this method because it just accssing point to this data.
+
 
 # ref(Of T) type
 A new type for unsafe pointer, it's value of reference type aka it's value type but invoke by method as reference type.
