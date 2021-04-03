@@ -2,7 +2,7 @@
 Simple library to help you access to data in memory with less restain from C# or VB language limited.
 
 ## What's in V 2.0 ?
-- 11 new extension method
+- 10 new extension method
 - 2 forging meta data
 - 3 raw structure data
 - Custom.local(Of Contain As Structure, T) as value type array
@@ -152,14 +152,16 @@ B.value = 0
 ```
 
 # Extension method
-### ref(Of T)(ByRef Input As T) As ref(Of T)
-Create pointer from target, field of class and element of array are most safe pointer you can create without any concern, pointer of local var and value type should be use within their life cycle.
+
+### as(Of T, V)(Input As T) As V
+Unsafe cast type on .net, you can cast object to any type, doesn't matter if it ref type or val type, highly cause an error if you don't know what are you doing.
 ```vb
 Dim Base = {1, 2, 3, 4, 5}
-Dim A = Base(0).ref
+Dim A = Base.as(Of ref(Of Intptr))
+
+'A(1).change(UInt64) is 5, aka Base.Length
+'A(2).change(Int32) is Base(0).ref
 ```
-### ref(Of T, V)(ByRef Input As T) As ref(Of V)
-Same as previous but you can change its type to other on create.
 
 ### mirror(Of T As Class)(Input As T) As T
 It's `MemberwiseClone` for duplicate a reference type object.
@@ -171,15 +173,52 @@ A(0) = 56
 'Base(0) still be 1
 ```
 
-### as(Of T, V)(Input As T) As V
-Unsafe cast type on .net, you can cast object to any type, doesn't matter if it ref type or val type, highly cause an error if you don't know what are you doing.
+### mirror(Of T As Class, V As {Class, New})(Host As T) As V
+Clone type like above but also change metadata to other class along with.
+
+### mirror(Of T As Class, V As Class)(Host As T, Prototype As V) As V
+Same as above but in case V can't be create, this method will copy metadata from Prototype to new clone.
+
+### mirror(Of T, V)(Host As T()) As V()
+Duplicate an array along with change element type and auto adjuct size according to new element type size. 
+
+## ref type constructor
+### ref(Of T)(ByRef Input As T) As ref(Of T)
+Create pointer from target, field of class and element of array are most safe pointer you can create without any concern, pointer of local var and value type should be use within their life cycle.
 ```vb
 Dim Base = {1, 2, 3, 4, 5}
-Dim A = Base.as(Of ref(Of Intptr))
-
-'A(1).change(UInt64) is 5, aka Base.Length
-'A(2).change(Int32) is Base(0).ref
+Dim A = Base(0).ref
 ```
+### ref(Of T, V)(ByRef Input As T) As ref(Of V)
+Same as previous but you can change its type to other on create.
+
+### ref_as(Of T, V As Class)(ByRef Input As T) As V
+It the same as `data.ref.as(Of V)` , just merge it into single method.
+
+## Custom namespace constructor
+### alloc(Of Contain As Structure, T)(ByRef Container As Contain) As Custom.local(Of Contain, T)
+
+## Raw namespace constructor
+### raw(Of Array_element, Contain As Structure)(Data As Array_element()) As ref(Of Raw.array(Of Contain, Array_element))
+Cast an array as pointer of Raw.array data.
+
+### raw(Of T As {Class, New}, Contain As Structure)(Data As T) As ref(Of Raw.class(Of Contain, T))
+Cast a class as pointer of Raw.class data.
+
+### raw_array(Of Contain As Structure, Array_element)(Data As Contain) As Raw.array(Of Contain, Array_element)
+Create Raw.array from Data.
+
+```vb
+Dim Base = 0.raw_array(Of Byte)
+Dim Byte_array = Base.implement()
+'Byte_array.Length == 4
+```
+
+### raw_class(Of Contain As Structure, T As {Class, New})(Data As Contain) As Raw.class(Of Contain, T)
+Create Raw.class from Data.
+
+### boxed(Of T As Structure)(Input As T) As Raw.boxed(Of T)
+Create Raw.boxed from Data.
 
 # FAQ
 ### Becareful when refer from local var.
