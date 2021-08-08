@@ -1,6 +1,11 @@
+// cd C:\Users\Richter\source\repos\std\bin
+// ilasm /dll cptr.il /res=cptr.res /output=STD.dll
+
 
 //  Microsoft (R) .NET Framework IL Disassembler.  Version 4.8.3928.0
 //  Copyright (c) Microsoft Corporation.  All rights reserved.
+
+
 
 // Metadata version: v4.0.30319
 .assembly extern System.Runtime
@@ -8,12 +13,13 @@
   .publickeytoken = (B0 3F 5F 7F 11 D5 0A 3A )                         // .?_....:
   .ver 5:0:0:0
 }
-.assembly extern Microsoft.VisualBasic.Core
+
+.assembly extern System.Collections
 {
   .publickeytoken = (B0 3F 5F 7F 11 D5 0A 3A )                         // .?_....:
-  .ver 10:0:6:0
+  .ver 5:0:0:0
 }
-.assembly extern System.Reflection.Primitives
+.assembly extern System.Runtime.InteropServices
 {
   .publickeytoken = (B0 3F 5F 7F 11 D5 0A 3A )                         // .?_....:
   .ver 5:0:0:0
@@ -53,107 +59,264 @@
 
 // =============== CLASS MEMBERS DECLARATION ===================
 
-.class public auto ansi sealed Exten
+.class public auto ansi abstract sealed Exten
        extends [System.Runtime]System.Object
 {
-  .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
-  .custom instance void [Microsoft.VisualBasic.Core]Microsoft.VisualBasic.CompilerServices.StandardModuleAttribute::.ctor() = ( 01 00 00 00 ) 
-  .method public static !!V  'as'<T,V>(!!T Input) cil managed aggressiveinlining
-  {
     .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
-    .maxstack  1
-    ldarg.0 ret
-  } // end of method Exten::'as'
+    .method public static !!V  'as'<T,V>(!!T Input) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
+        .maxstack  1
+        ldarg.0 ret
+    } // end of method Exten::'as'
 
-  .method public static !!T  mirror<class T>(!!T Input) cil managed aggressiveinlining
-  {
+    .method public static !!T  mirror<class T>(!!T Input) cil managed aggressiveinlining
+    {
     .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
-    .maxstack  1
-    ldarg.0 
-    call       instance object [System.Runtime]System.Object::MemberwiseClone()
-    ret
-  } // end of method Exten::mirror
+        .maxstack  1
+        ldarg.0 
+        call       instance object [System.Runtime]System.Object::MemberwiseClone()
+        ret
+    } // end of method Exten::mirror
 
-  .method public static class ref`1<!!T> ref<T>(!!T& Input) cil managed aggressiveinlining
-  {
+    .method public static class ref`1<!!T> 
+            ref<T>(!!T& Input) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
+        .maxstack  1
+        ldarg.0 ret
+    } // end of method Exten::ref
+
+    .method public static !!V
+            ref_as<T, class V>(!!T& Input) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
+        .maxstack  1
+        ldarg.0 ret
+    } // end of method Exten::ref_as
+
+    .method public static class ref`1<!!V> 
+            ref<T,V>(!!T& Input) cil managed aggressiveinlining
+    {
     .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
-    .maxstack  1
-    ldarg.0 ret
-  } // end of method Exten::ref
+        .maxstack  1
+        ldarg.0 ret
+    } // end of method Exten::ref
 
-  .method public static !!V ref_as<T, class V>(!!T& Input) cil managed aggressiveinlining
-  {
+    .method public static class Custom.local`2<!!Contain,!!T> 
+            alloc<valuetype .ctor ([System.Runtime]System.ValueType) Contain,T>(!!Contain& Container) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 )
+        .maxstack  1
+        ldarg.0 ret
+    } // end of method Extened::alloc
+
+    .method public static valuetype Raw.boxed`1<!!T> 
+        boxed<valuetype .ctor ([System.Runtime]System.ValueType) T>(!!T Input) cil managed aggressiveinlining{
+
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
+        .maxstack  1
+
+        ldarg.0
+        call       valuetype Raw.boxed`1<!0> valuetype Raw.boxed`1<!!T>::op_Implicit(!0)
+        ret
+    } // end of method Extened::boxed
+
+    .method public static class ref`1<valuetype Raw.array`2<!!Contain,!!Array_element>> 
+        raw<Array_element,valuetype .ctor ([System.Runtime]System.ValueType) Contain>(!!Array_element[] Data) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 )
+        .maxstack  1
+        ldarg.0 ret
+    } // end of method Extened::raw
+
+    .method public static class ref`1<valuetype Raw.class`2<!!Contain,!!T>> 
+        raw<class .ctor T,valuetype .ctor ([System.Runtime]System.ValueType) Contain>(!!T Data) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 )
+        .maxstack  1
+        ldarg.0 ret
+    } // end of method Extened::raw
+
+    .method public static valuetype Raw.array`2<!!Contain,!!Array_element> 
+        raw_array<valuetype .ctor ([System.Runtime]System.ValueType) Contain,Array_element>(!!Contain Data) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
+        .maxstack  1
+
+        ldarg.0
+        call       valuetype Raw.array`2<!0,!1> valuetype Raw.array`2<!!Contain,!!Array_element>::op_Implicit(!0)
+        ret
+    } // end of method Extened::raw_array
+
+    .method public static valuetype Raw.class`2<!!Contain,!!T> 
+        raw_class<valuetype .ctor ([System.Runtime]System.ValueType) Contain,class .ctor T>(!!Contain Data) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
+        .maxstack  1
+
+        ldarg.0
+        call       valuetype Raw.class`2<!0,!1> valuetype Raw.class`2<!!Contain,!!T>::op_Implicit(!0)
+        ret
+    } // end of method Extened::raw_class
+
+    .method public static !!V[]  mirror<T,V>(!!T[] Host) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
+        .maxstack 4
+
+        ldarg.0
+        call       !!0 Exten::mirror<!!0[]>(!!0)
+
+        dup
+        ldsfld     native uint valuetype Forge.array`1<!!V>::meta
+        stind.ref
+
+        dup
+        sizeof native uint
+        add
+
+        ldarg.0
+        ldlen
+        sizeof !!0
+        mul
+        sizeof !!1
+        div
+
+        stind.i        
+
+        ret
+    } // end of method Extened::mirror
+
+    .method public static !!V  mirror<class T,class .ctor V>(!!T Host) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
+        .maxstack 2
+
+        ldarg.0
+        call       !!0 Exten::mirror<!!0[]>(!!0)
+
+        dup
+        ldsfld     native uint valuetype Forge.class`1<!!V>::meta
+        stind.ref
+
+        ret
+    }
+
+    .method public static !!V  mirror<class T,class V>(!!T Host, !!V Prototype) cil managed aggressiveinlining
+    {
     .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
-    .maxstack  1
-    ldarg.0 ret
-  } // end of method Exten::ref_as
+        .maxstack 2
 
-  .method public static class ref`1<!!V> ref<T,V>(!!T& Input) cil managed aggressiveinlining
-  {
-    .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
-    .maxstack  1
-    ldarg.0 ret
-  } // end of method Exten::ref
+        ldarg.0
+        call       !!0 Exten::mirror<!!0[]>(!!0)
 
-  .method public static class ref`1<!!V> raw<class T, V>(!!T Input) cil managed aggressiveinlining
-  {
-    .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
-    .maxstack  2
-    ldarg.0 
-    sizeof native int
-    add
-    ret
-  } // end of method Exten::raw
-  
-  .method public static class ref`1<!!V> raw<T, V>(!!T[] Input) cil managed aggressiveinlining
-  {
-    .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
-    .maxstack  3
-    ldarg.0 
-    sizeof native int
-    ldc.i4.2
-    mul add
-    ret
-  } // end of method Exten::raw  
+        dup
+        ldarg.1
+        ldind.ref
+        stind.ref
 
-  .method public static class Custom.local`2<!!Contain,!!T> 
-        alloc<valuetype .ctor ([System.Runtime]System.ValueType) Contain,T>(!!Contain& Container) cil managed aggressiveinlining
-  {
-    .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 )
-    .maxstack  1
-    ldarg.0 ret
-  } // end of method Extened::alloc
-  
-  .method public static valuetype Raw.boxed`1<!!T> 
-   boxed<valuetype .ctor ([System.Runtime]System.ValueType) T>(!!T Input) cil managed aggressiveinlining
-   {
+        ret
+    }
 
-      .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
-      .maxstack  1
-      ldarg.0
-      call       valuetype Raw.boxed`1<!0> valuetype Raw.boxed`1<!!T>::op_Implicit(!0)
-      ret
-  } // end of method Extened::boxed
+    .method public static bool is_default<T>(!!T Input) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 )
+        .maxstack  1
+        
+        ldarg.0
+        call        bool valuetype default`1<!!T>::get_is_default(!0)
+        ret
+    }// end of method Extened::is_default
+    
+    .method public static bool is_unstruct_default<T>(!!T Input) cil managed aggressiveinlining
+    {
+        .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 )
+        .maxstack 2
 
-  .method public static class ref`1<valuetype Raw.array`2<!!Contain,!!Array_element>> 
-      raw<Array_element,valuetype .ctor ([System.Runtime]System.ValueType) Contain>(!!Array_element[] Data) cil managed aggressiveinlining
-  {
-    .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 )
-    .maxstack  1
-    ldarg.0 ret
-  } // end of method Extened::raw
-
-  .method public static class ref`1<valuetype Raw.class`2<!!Contain,!!T>> 
-      raw<class .ctor T,valuetype .ctor ([System.Runtime]System.ValueType) Contain>(!!T Data) cil managed aggressiveinlining
-  {
-    .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 )
-    .maxstack  1
-    ldarg.0 ret
-  } // end of method Extened::raw
+        ldarg.0
+        ldc.i4.0
+        ceq
+        ret
+    } // end of method Extened::is_default_primitive
 
 } // end of class Exten
 
 //=============================================================
+//=============================================================
+
+.class auto ansi abstract sealed Helper
+       extends [System.Runtime]System.Object
+{
+    .custom instance void [System.Runtime]System.Runtime.CompilerServices.ExtensionAttribute::.ctor() = ( 01 00 00 00 ) 
+
+    .method assembly static bool is_struct_type<T>() cil managed aggressiveinlining
+  {
+    .maxstack  3
+    .locals init (class [System.Runtime]System.Type V_0)
+
+    ldtoken    !!T
+    call       class [System.Runtime]System.Type [System.Runtime]System.Type::GetTypeFromHandle(valuetype [System.Runtime]System.RuntimeTypeHandle)
+    stloc.0
+    
+    ldloc.0
+    callvirt   instance bool [System.Runtime]System.Type::get_IsValueType()
+    
+    ldloc.0
+    callvirt   instance bool [System.Runtime]System.Type::get_IsPrimitive()
+    ldc.i4.0
+    
+    ceq
+    and
+    ret
+  } 
+
+} // End of class Helper
+//============================================================= 
+//=============================================================
+.class public ansi abstract sealed default`1<T>
+       extends [System.Runtime]System.ValueType
+{
+  .field public static initonly bool is_struct
+  .field public static initonly !T 'value'
+  .field public static initonly class [System.Runtime]System.IEquatable`1<!T> is_it
+  .method private specialname rtspecialname static 
+          void  .cctor() cil managed
+  {
+    .maxstack  1
+
+    call       bool Helper::is_struct_type<!T>()
+    stsfld     bool valuetype default`1<!T>::is_struct
+    ldsfld     !0 valuetype default`1<!T>::'value'
+    box        !T
+    castclass  class [System.Runtime]System.IEquatable`1<!T>
+    stsfld     class [System.Runtime]System.IEquatable`1<!0> valuetype default`1<!T>::is_it
+    ret
+  } // end of method default`1::.cctor
+
+  .method public specialname static bool 
+          get_is_default(!T Input) cil managed aggressiveinlining
+  {
+    .maxstack  2
+    ldsfld     bool valuetype default`1<!T>::is_struct
+    brtrue.s   Struct
+
+    ldarg.0
+    call        bool Exten::is_unstruct_default<!T>(!!0)
+    ret
+
+    Struct:
+    ldsfld     class [System.Runtime]System.IEquatable`1<!0> valuetype default`1<!T>::is_it
+    ldarg.0
+    callvirt   instance bool class [System.Runtime]System.IEquatable`1<!T>::Equals(!0)
+    ret
+  } // end of method default`1::get_is_default
+
+  .property bool is_default(!T)
+  {
+    .get bool default`1::get_is_default(!T)
+  } // end of property default`1::is_default
+} // end of class default`1
 //=============================================================
 
 .class public auto ansi abstract sealed ref`1<T>
@@ -184,7 +347,7 @@
     ret
   } // end of method ref`1::get_Index
 
-  .method public specialname static uint64 
+  .method public static specialname static uint64 
           get_size() cil managed aggressiveinlining
   {
     .maxstack  1
@@ -200,7 +363,42 @@
     ret
   } // end of method ref`1::get_range
 
-  .method public instance void  copy(class ref`1<!T> Destination,
+  .method public specialname instance !T[] 
+          get_section(uint64 Length) cil managed aggressiveinlining
+  {
+    .maxstack  5
+    ldarg.1
+    newarr !T
+
+    dup
+    ldc.i4.0
+    ldelema !T
+
+    ldarg.0
+    ldarg.1 sizeof !T mul
+    cpblk 
+    
+    ret
+  } // end of method ref`1::get_section
+
+  .method public specialname instance void 
+          set_section(uint64 Length, !T[] Input) cil managed aggressiveinlining
+  {
+    .maxstack  4
+
+    ldarg.0
+
+    ldarg.2
+    ldc.i4.0
+    ldelema !T
+
+    ldarg.1 sizeof !T mul
+    cpblk 
+
+    ret
+  } // end of method ref`1::set_section
+
+  .method public instance void copy(class ref`1<!T> Destination,
                                      uint64 Length) cil managed aggressiveinlining
   {
     .maxstack  4
@@ -208,6 +406,31 @@
     ldarg.2 sizeof !T mul
     cpblk ret
   } // end of method ref`1::copy
+
+  .method public instance void empty(uint64 Length) cil managed aggressiveinlining
+  {
+    .maxstack  4
+    ldarg.0
+    ldc.i4.0
+    ldarg.1
+    sizeof !T
+    mul
+
+    initblk 
+    ret
+  } // end of method ref`1::empty
+
+  .method public instance void  fill_byte(uint8 Value,
+                                          uint64 Byte_length) cil managed aggressiveinlining
+  {
+    .maxstack  3
+    ldarg.0 
+    ldarg.1 
+    ldarg.2
+
+    initblk 
+    ret
+  } // end of method ref`1::fill_byte
 
   .method public instance class ref`1<!!V> 
           change<V>() cil managed aggressiveinlining
@@ -227,6 +450,7 @@
     .get instance !T ref`1::get_value()
     .set instance void ref`1::set_value(!T)
   } // end of property ref`1::'value'
+
   .property instance class ref`1<!T> Index(int64)
   {
     .get instance class ref`1<!T> ref`1::get_Index(int64)
@@ -235,10 +459,17 @@
   {
     .get uint64 ref`1::get_size()
   } // end of property ref`1::size
+
   .property instance int64 range(class ref`1<!T>)
   {
     .get instance int64 ref`1::get_range(class ref`1<!T>)
   } // end of property ref`1::range
+
+  .property instance !T[] section(uint64)
+  {
+    .get instance !T[] ref`1::get_section(uint64)
+    .set instance void ref`1::set_section(uint64, !T[])
+  } // end of property ref`1::section
 } // end of class ref`1
 
 //==========================================================
@@ -259,7 +490,8 @@
   } // end of method local`2::get_item
 
   .method public specialname instance void 
-          set_item(uint64 Index, !T 'value') cil managed aggressiveinlining
+          set_item(uint64 Index,
+                   !T 'value') cil managed aggressiveinlining
   {
     .maxstack  3
     ldarg.1 sizeof !T mul
@@ -313,20 +545,16 @@
     .get instance !Contain Custom.local`2::get_container()
     .set instance void Custom.local`2::set_container(!Contain)
   } // end of property local`2::container
-  
+
 } // end of class Custom.local`2
 // =============================================================
 
-.class value private sequential ansi sealed Forge.struct`1<valuetype T>
+.class value private sequential ansi abstract sealed Forge.struct`1<valuetype T>
 {
-    .pack 0
-    .size 1
-
     .field static assembly native uint meta
 
     .method private specialname rtspecialname static void 
-            .cctor() cil managed aggressiveinlining 
-    {
+            .cctor() cil managed aggressiveinlining {
         .maxstack  1
 
         ldnull
@@ -338,11 +566,8 @@
 } // end of class forge_struct`1
 // =============================================================
 
-.class value private sequential ansi sealed beforefieldinit implementation`2<T,class Interface>
+.class value private sequential ansi abstract sealed beforefieldinit implementation`2<T,class Interface>
 {
-    .pack 0
-    .size 1
-
     .field static assembly bool has_been_done
 
     .method private specialname rtspecialname static 
@@ -364,9 +589,6 @@
 
 .class value public sequential ansi sealed Raw.boxed`1<valuetype T>
 {
-    .pack 0
-    .size 1
-
     .field assembly native uint meta
     .field assembly !T data
 
@@ -404,27 +626,18 @@
 
 // =============================================================
 
-.class public sequential ansi sealed beforefieldinit Forge.array`1<T>
-       extends [System.Runtime]System.ValueType
+.class public sequential ansi abstract sealed beforefieldinit Forge.array`1<T>
 {
-  .pack 0
-  .size 1
-
   .field static public initonly native uint meta
-  .field static public initonly uint64 size
 
   .method private specialname rtspecialname static 
-        void  .cctor() cil managed
+          void .cctor() cil managed
     {
       .maxstack  1
-      
-      ldc.i4.0
-      newarr !T[]
+
+      call       !!0[] [System.Runtime]System.Array::Empty<!T>()
       ldind.ref
       stsfld     native uint valuetype Forge.array`1<!T>::meta
-
-      sizeof !T
-      stsfld     uint64 valuetype Forge.array`1<!T>::size
       ret
     } // end of method array`1::.cctor
 
@@ -433,19 +646,14 @@
 
 // =============================================================
 
-.class public sequential ansi sealed beforefieldinit Forge.class`1<class .ctor T>
-       extends [System.Runtime]System.ValueType
+.class public sequential ansi abstract sealed beforefieldinit Forge.class`1<class .ctor T>
 {
-  .pack 0
-  .size 1
-
   .field static public initonly native uint meta
 
   .method private specialname rtspecialname static 
         void  .cctor() cil managed
     {
       .maxstack  1
-      
       call       !!0 [System.Runtime]System.Activator::CreateInstance<!T>()  
       ldind.ref
       stsfld     native uint valuetype Forge.class`1<!T>::meta
@@ -460,15 +668,41 @@
 .class public sequential ansi sealed Raw.array`2<valuetype .ctor ([System.Runtime]System.ValueType) Container,Element>
        extends [System.Runtime]System.ValueType
 {
-    .field assembly !Container data
+    .field public !Container data
     .field assembly uint64 length
     .field assembly native uint meta
+
+    .method public instance !Element[] implement () cil managed aggressiveinlining
+    {
+        .maxstack 1
+        ldarg.0 ret
+    }
+
+    .method public instance valuetype Raw.array`2<!Container,!!V> change<V> () cil managed aggressiveinlining
+    {
+        .maxstack 1
+        ldarg.0 
+        ldfld   !0 valuetype Raw.array`2<!Container,!Element>::data
+        call       valuetype Raw.array`2<!0,!1> valuetype Raw.array`2<!0,!!V>::op_Implicit(!0)
+        ret
+    }
+
+    .method public instance valuetype Raw.class`2<!Container,!!V> 'class'<class .ctor V> () cil managed aggressiveinlining
+    {
+        .maxstack 1
+        ldarg.0 
+        ldfld   !0 valuetype Raw.array`2<!Container,!Element>::data
+        call       valuetype Raw.class`2<!0,!1> valuetype Raw.class`2<!0,!!V>::op_Implicit(!0)
+        ret
+    }
 
     .method public specialname static valuetype Raw.array`2<!Container,!Element> 
         op_Implicit(!Container Input) cil managed aggressiveinlining
     {      
       .maxstack  3
       .locals init (valuetype Raw.array`2<!Container,!Element>)
+
+
 
       ldloca.s   0
       ldsfld     native uint valuetype Forge.array`1<!Element>::meta
@@ -495,15 +729,38 @@
 .class public sequential ansi sealed Raw.class`2<valuetype .ctor ([System.Runtime]System.ValueType) Container,class .ctor T>
        extends [System.Runtime]System.ValueType
 {
-    .field assembly !Container data
+    .field public !Container data
     .field assembly native uint meta
+
+    .method public instance !T implement () cil managed aggressiveinlining
+    {
+        .maxstack 1
+        ldarg.0 ret
+    }
+
+    .method public instance valuetype Raw.class`2<!Container,!!V> change<class .ctor V> () cil managed aggressiveinlining
+    {
+        .maxstack 1
+        ldarg.0 
+        ldfld   !0 valuetype Raw.class`2<!Container,!T>::data
+        call       valuetype Raw.class`2<!0,!1> valuetype Raw.class`2<!0,!!V>::op_Implicit(!0)
+        ret
+    }
+
+    .method public instance valuetype Raw.array`2<!Container,!!V> 'array'<V> () cil managed aggressiveinlining
+    {
+        .maxstack 1
+        ldarg.0 
+        ldfld   !0 valuetype Raw.class`2<!Container,!T>::data
+        call       valuetype Raw.array`2<!0,!1> valuetype Raw.array`2<!0,!!V>::op_Implicit(!0)
+        ret
+    }
 
     .method public specialname static valuetype Raw.class`2<!Container,!T> 
         op_Implicit(!Container Input) cil managed aggressiveinlining
     {
       .maxstack  2
       .locals init (valuetype Raw.class`2<!Container,!T>)
-      
       ldloca.s   0
       ldsfld     native uint valuetype Forge.class`1<!T>::meta
       stfld      native uint valuetype Raw.class`2<!Container,!T>::meta
@@ -517,5 +774,126 @@
     } // end of method class`2::op_Implicit
 
 } // end of class Raw.class`2
+
+// =============================================================
+.class public auto ansi sealed beforefieldinit Memory.stack`1<T>
+       extends [System.Runtime]System.Object
+{
+
+    .method public static class Memory.stack`1<!T> 
+            alloc(native int Size) cil managed aggressiveinlining
+    {
+        sizeof !T
+        ldarg.0
+        mul
+        call        class Memory.stack Memory.stack::alloc(native int)
+        ret
+    }
+    .method public instance void  dispose() cil managed aggressiveinlining
+    {
+        .maxstack  2
+        ldarg.0
+        call       void [System.Runtime.InteropServices]System.Runtime.InteropServices.Marshal::FreeHGlobal(native int)
+
+        ldsfld     class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64> Memory.stack::_size_list
+        ldarg.0
+        callvirt   instance bool class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64>::Remove(!0)
+        pop
+        ret
+    } // end of method stack::dispose
+
+    .method public instance class ref`1<!T> 
+            refer() cil managed aggressiveinlining
+    {
+        .maxstack  1
+        ldarg.0 ret
+    } // end of method stack::reference_as
+    .method public specialname instance uint64 
+            get_size() cil managed aggressiveinlining
+    {
+        .maxstack  2
+        ldsfld     class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64> Memory.stack::_size_list
+        ldarg.0
+        callvirt   instance !1 class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64>::get_Item(!0)
+        sizeof  !T
+        div
+        ret
+    } // end of method stack::get_size
+    .property instance uint64 size()
+    {
+        .get instance uint64 Memory.stack`1::get_size()
+    } // end of property stack::size
+}
+// =============================================================
+.class public auto ansi sealed beforefieldinit Memory.stack
+       extends [System.Runtime]System.Object
+{
+    .field static assembly class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64> _size_list
+
+    .method private specialname rtspecialname static 
+            void  .cctor() cil managed aggressiveinlining
+    {
+      .maxstack  1
+      newobj     instance void class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64>::.ctor()
+      stsfld     class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64> Memory.stack::_size_list
+      ret
+    } // end of method stack::.cctor
+
+
+    .method public static class Memory.stack 
+            alloc(native int Size) cil managed aggressiveinlining
+    {
+        .maxstack  3
+        .locals init (native int)
+        ldarg.0
+        call       native int [System.Runtime.InteropServices]System.Runtime.InteropServices.Marshal::AllocHGlobal(native int)
+        stloc.0
+
+        ldloc.0
+        ldc.i4.0
+        ldarg.0
+        initblk
+        
+        ldsfld     class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64> Memory.stack::_size_list
+        ldloc.0
+        ldarg.0
+        callvirt   instance void class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64>::Add(!0,!1)
+        
+        ldloc.0
+        ret
+    } // end of method stack::alloc
+    .method public instance void  dispose() cil managed aggressiveinlining
+    {
+        .maxstack  2
+        ldarg.0
+        call       void [System.Runtime.InteropServices]System.Runtime.InteropServices.Marshal::FreeHGlobal(native int)
+
+        ldsfld     class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64> Memory.stack::_size_list
+        ldarg.0
+        callvirt   instance bool class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64>::Remove(!0)
+        pop
+        ret
+    } // end of method stack::dispose
+    .method public instance class ref`1<!!T> 
+            refer<T>() cil managed aggressiveinlining
+    {
+        .maxstack  1
+        ldarg.0 ret
+    } // end of method stack::reference_as
+    .method public specialname instance uint64 
+            get_size() cil managed aggressiveinlining
+    {
+        .maxstack  2
+        ldsfld     class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64> Memory.stack::_size_list
+        ldarg.0
+        callvirt   instance !1 class [System.Collections]System.Collections.Generic.Dictionary`2<native int,uint64>::get_Item(!0)
+        ret
+    } // end of method stack::get_size
+    .property instance uint64 size()
+    {
+        .get instance uint64 Memory.stack::get_size()
+    } // end of property stack::size
+
+} // end of class Memory.stack
 
 // =============================================================
